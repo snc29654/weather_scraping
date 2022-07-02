@@ -1,0 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
+
+def Weather(AreaCode):
+    url = "https://weather.yahoo.co.jp/weather/jp/13/" + str(AreaCode) + ".html"
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    rs = soup.find(class_='forecastCity')
+    rs = [i.strip() for i in rs.text.splitlines()]
+    rs = [i for i in rs if i != ""]
+    print(rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。")
+
+Weather(4410)

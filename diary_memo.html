@@ -1,0 +1,251 @@
+<!DOCtype html>
+<html lang="ja">
+<head>
+<title>Sample</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="sample.css" type="text/css">
+</head>
+<body>
+  <script>
+  var today=new Date(); 
+
+  var year = today.getFullYear();
+  var month = today.getMonth()+1;
+  var week = today.getDay();
+  var day = today.getDate();
+  
+  var week_ja= new Array("日","月","火","水","木","金","土");
+  
+  document.write(year+"年"+month+"月"+day+"日 "+week_ja[week]+"曜日");
+</script>
+<b>記録ノート</b>
+<br>
+<br>
+  <table width=80%%>
+    <tr>
+      <td COLSPAN=2>
+        <form method="post" target="_blank" action="http://localhost:6543">
+          <p>メモ帳への入力：
+          <div>   日付     <input type="text" name="date"> </div>
+          <div>   名前     <input type="text" name="name"></div>
+          <div>   天気     <input type="text" name="weather"></div>
+          <div>   指定キー（このキーのみ表示） <input type="text" name="match_key"></div>
+          <div>   検索ワード（内容から検索） <input type="text" name="match_word"></div>
+          <div>   削除キー <input id="ex_box" input type="text" name="delkey" disabled /></div>
+          <div>   スクレいピングURL <input type="text" size="50" name="scraping_url" value=""></div>
+            <br>
+          </p>
+            <select name="action" id="action">
+            <option value="scrape">スクレイピング</option>
+            <option value="weather">天気予報</option>
+            <option value="view">全表示</option>
+            <option value="add">追加登録</option>
+            <option value="delete">指定キー削除</option>
+            <option value="srch">検索ワード表示</option>
+            <option value="count">検索ワード件数</option>
+            <option value="today">本日登録分表示</option>
+            <option value="keyview">指定キー表示</option>
+            <option value="kindview">題名検索</option>
+            <option value="lastview">最後のレコード</option>
+            <option value="delall">全削除</option>
+            </select>
+
+
+            <select name="scrapeaction" id="scrapeaction">
+            <option value="https://news.yahoo.co.jp/topics/top-picks">yahooトップ</option>
+            <option value="https://news.yahoo.co.jp/categories/entertainment">yahooエンタメ</option>
+            <option value="https://news.yahoo.co.jp/categories/sports">yahooスポーツ</option>
+            <option value="https://news.yahoo.co.jp/categories/business">yahoo　経済</option>
+            <option value="https://news.yahoo.co.jp/categories/it">yahoo　IT</option>
+            </select>
+
+            <select name="area" id="area">
+
+            <option value="1100">	 稚内		</option>		
+            <option value="1200">    旭川		</option>
+            <option value="1300">    留萌		</option>
+            <option value="1400">    札幌		</option>
+            <option value="1500">    岩見沢		</option>
+            <option value="1600">    倶知安		</option>
+            <option value="1710">    網走		</option>
+            <option value="1720">    北見		</option>
+            <option value="1730">    紋別		</option>
+            <option value="1800">    根室		</option>
+            <option value="1900">    釧路		</option>
+            <option value="2000">    帯広		</option>
+            <option value="2100">    室蘭		</option>
+            <option value="2200">    浦河		</option>
+            <option value="2300">    函館		</option>
+            <option value="2400">    江差		</option>
+            <option value="3110">    青森		</option>
+            <option value="3120">    むつ		</option>
+            <option value="3130">    八戸		</option>
+            <option value="3310">    盛岡		</option>
+            <option value="3320">    宮古		</option>
+            <option value="3330">    大船渡		</option>
+            <option value="3410">    仙台		</option>
+            <option value="3420">    白石		</option>
+            <option value="3210">    秋田		</option>
+            <option value="3220">    横手		</option>
+            <option value="3510">    山形		</option>
+            <option value="3520">    米沢		</option>
+            <option value="3530">    酒田		</option>
+            <option value="3540">    新庄		</option>
+            <option value="3610">    福島		</option>
+            <option value="3620">    小名浜		</option>
+            <option value="3630">    若松		</option>
+            <option value="4010">    水戸		</option>
+            <option value="4020">    土浦		</option>
+            <option value="4110">    宇都宮		</option>
+            <option value="4120">    大田原		</option>
+            <option value="4210">    前橋		</option>
+            <option value="4220">    みなかみ	</option>
+            <option value="4310">    さいたま	</option>
+            <option value="4320">    熊谷		</option>
+            <option value="4330">    秩父		</option>
+            <option value="4510">    千葉		</option>
+            <option value="4520">    銚子		</option>
+            <option value="4530">    館山		</option>
+            <option value="4410">    東京		</option>
+            <option value="4420">    大島		</option>
+            <option value="4430">    八丈島		</option>
+            <option value="4440">    父島		</option>
+            <option value="4610">    横浜		</option>
+            <option value="4620">    小田原		</option>
+            <option value="5410">    新潟		</option>
+            <option value="5420">    長岡		</option>
+            <option value="5430">    高田		</option>
+            <option value="5440">    相川		</option>
+            <option value="5510">    富山		</option>
+            <option value="5520">    伏木		</option>
+            <option value="5610">    金沢		</option>
+            <option value="5620">    輪島		</option>
+            <option value="5710">    福井		</option>
+            <option value="5720">    敦賀		</option>
+            <option value="4910">    甲府		</option>
+            <option value="4920">    河口湖		</option>
+            <option value="4810">    長野		</option>
+            <option value="4820">    松本		</option>
+            <option value="4830">    飯田		</option>
+            <option value="5210">    岐阜		</option>
+            <option value="5220">    高山		</option>
+            <option value="5010">    静岡		</option>
+            <option value="5020">    網代		</option>
+            <option value="5030">    三島		</option>
+            <option value="5040">    浜松		</option>
+            <option value="5110">    名古屋		</option>
+            <option value="5120">    豊橋		</option>
+            <option value="5310">    津		</option>
+            <option value="5320">    尾鷲		</option>
+            <option value="6010">    大津		</option>
+            <option value="6020">    彦根		</option>
+            <option value="6110">    京都		</option>
+            <option value="6120">    舞鶴		</option>
+            <option value="6200">    大阪		</option>
+            <option value="6310">    神戸		</option>
+            <option value="6320">    豊岡		</option>
+            <option value="6410">    奈良		</option>
+            <option value="6420">    風屋		</option>
+            <option value="6510">    和歌山		</option>
+            <option value="6520">    潮岬		</option>
+            <option value="6910">    鳥取		</option>
+            <option value="6920">    米子		</option>
+            <option value="6810">    松江		</option>
+            <option value="6820">    浜田		</option>
+            <option value="6830">    西郷		</option>
+            <option value="6610">    岡山		</option>
+            <option value="6620">    津山		</option>
+            <option value="6710">    広島		</option>
+            <option value="6720">    庄原		</option>
+            <option value="8110">    下関		</option>
+            <option value="8120">    山口		</option>
+            <option value="8130">    柳井		</option>
+            <option value="8140">    萩		</option>
+            <option value="7110">    徳島		</option>
+            <option value="7120">    日和佐		</option>
+            <option value="7200">    高松		</option>
+            <option value="7310">    松山		</option>
+            <option value="7320">    新居浜		</option>
+            <option value="7330">    宇和島		</option>
+            <option value="7410">    高知		</option>
+            <option value="7420">    室戸岬		</option>
+            <option value="7430">    清水		</option>
+            <option value="8210">    福岡		</option>
+            <option value="8220">    八幡		</option>
+            <option value="8230">    飯塚		</option>
+            <option value="8240">    久留米		</option>
+            <option value="8510">    佐賀		</option>
+            <option value="8520">    伊万里		</option>
+            <option value="8410">    長崎		</option>
+            <option value="8420">    佐世保		</option>
+            <option value="8430">    厳原		</option>
+            <option value="8440">    福江		</option>
+            <option value="8610">    熊本		</option>
+            <option value="8620">    阿蘇乙姫	</option>
+            <option value="8630">    牛深		</option>
+            <option value="8640">    人吉		</option>
+            <option value="8310">    大分		</option>
+            <option value="8320">    中津		</option>
+            <option value="8330">    日田		</option>
+            <option value="8340">    佐伯		</option>
+            <option value="8710">    宮崎		</option>
+            <option value="8720">    延岡		</option>
+            <option value="8730">    都城		</option>
+            <option value="8740">    高千穂		</option>
+            <option value="8810">    鹿児島		</option>
+            <option value="8820">    鹿屋		</option>
+            <option value="8830">    種子島		</option>
+            <option value="8840">    名瀬		</option>
+            <option value="9110">    那覇		</option>
+            <option value="9120">    名護		</option>
+            <option value="9130">    久米島		</option>
+            <option value="9200">    南大東		</option>
+            <option value="9300">    宮古島		</option>
+            <option value="9410">    石垣島		</option>
+            <option value="9420">    与那国島	</option>
+            </select>
+
+
+
+
+            <select name="action2" id="action2">
+              <option value="all">内容含み</option>
+              <option value="select">題名のみ</option>
+              </select>
+              <script>
+              document.getElementById("action").addEventListener("change", function(){
+              var age_elem = document.getElementById("action");
+              var s_value = age_elem.options[age_elem.selectedIndex].value;
+              var box_elem = document.getElementById("ex_box");
+              if(s_value == "delete"){
+                box_elem.disabled = false;
+              } else{
+                box_elem.disabled = true;
+              }
+
+              if(s_value == "delall"){
+                alert('全レコード削除を選択します');
+              }
+
+
+            }, false);
+
+            </script>
+          <div>   題名     <input type="text" name="kind"></div>
+          <p><font color=#0000BB>内容：</font><br>
+            <textarea name="Contents" ROWS=10 COLS=50></textarea>
+            <br>
+          </p>
+            <input type="submit" value="登録">
+            <input type="reset" value="クリア">
+        </form>
+        <input type="date">
+      </td>
+    </tr>
+  </table>
+</center>
+<P>
+<center>
+</center>
+</body>
+</html>
