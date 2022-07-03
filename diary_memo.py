@@ -25,12 +25,18 @@ def Weather(AreaCode):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     rs = soup.find(class_='forecastCity')
+    return(rs)
+
+def Weather2(AreaCode):
+    url = "https://weather.yahoo.co.jp/weather/jp/13/" + str(AreaCode) + ".html"
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    rs = soup.find(class_='forecastCity')
     rs = [i.strip() for i in rs.text.splitlines()]
     rs = [i for i in rs if i != ""]
     print(rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。")
     w_data = rs[0] + "の天気は" + rs[1] + "、明日の天気は" + rs[19] + "です。"
     return(w_data)
-
 
 
 
@@ -104,6 +110,13 @@ def diary_world(request):
             ]
             c.executemany(insert_sql, users)
 
+        if action=="weather2":
+            w_data = Weather2(int(in_data["area"]))
+            insert_sql = 'insert into users (date, name, weather, kind, Contents) values (?,?,?,?,?)'
+            users = [
+            (date, name, weather, kind, Contents)
+            ]
+            c.executemany(insert_sql, users)
 
         elif action == "add":#追加
             insert_sql = 'insert into users (date, name, weather, kind, Contents) values (?,?,?,?,?)'
