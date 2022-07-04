@@ -18,7 +18,7 @@ import webbrowser
 
 dbname = '../database.db'
 
-
+find_all=[]
 
 def Weather(AreaCode):
     url = "https://weather.yahoo.co.jp/weather/jp/13/" + str(AreaCode) + ".html"
@@ -42,14 +42,15 @@ def Weather2(AreaCode):
 
 def  data_print(url):
     import requests
-
+    global find_all
     site = requests.get(url)
     data = BeautifulSoup(site.content, 'html.parser')
-    find_data=data.find_all("a")
+    find_data=data.find_all(find_all)
     #print(find_data)
     return(find_data)
     
 def diary_world(request):
+    global find_all
     print(request.params)
     in_data=request.params
     date=in_data["date"]
@@ -64,6 +65,7 @@ def diary_world(request):
     if weather =="":
         weather="未入力"
     kind=in_data["kind"]
+    find_all=in_data["find_all"]
     if kind =="":
         kind="未入力"
 
